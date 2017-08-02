@@ -1,7 +1,3 @@
-import peasy.*;
-import peasy.org.apache.commons.math.*;
-import peasy.org.apache.commons.math.geometry.*;
-
 import wblut.math.*;
 import wblut.processing.*;
 import wblut.core.*;
@@ -48,7 +44,6 @@ color outerColor;
 color innerColor;
 
 WB_Render render;
-PeasyCam camera;
 
 float addFactor;
 
@@ -109,7 +104,7 @@ void drawSequence(){
     }
     if (bDualShape){
       pushMatrix();
-        translate(0,width*0.75,0);
+        translate(width*0.75, 0,0);
         rotateY(mouseX*1.0f/width*TWO_PI);
         rotateX(mouseY*1.0f/height*TWO_PI);
         scale(0.3);
@@ -162,7 +157,7 @@ void drawSequence(){
         rotateX(mouseY*1.0f/height*TWO_PI);
         //scale(0.4);
         render.drawFacesFC(modifyShape);
-        stroke(0,50);
+        stroke(0,25);
         render.drawEdges(modifyShape);
         noStroke();
       popMatrix();

@@ -79,6 +79,7 @@ void makeFirstShape(){// make the first shape
 
 void makeDualShape(){ //make the dual shape
   bShape = createDualRock(bShape);
+  bShape.moveToSelf(centerPoint);
   dualShape = bShape.get();
   bDualShape = true;
   print(" the dual shape is done");
@@ -100,8 +101,7 @@ void makeFirstCells(){
     fitr.next().setColor(outerColor);
   }
   firstShape.add(innerShape);
-  println();
-  print(" the first shape is started. ");
+  println(" the first shape is started. ");
   firstCells = createVoro(firstShape, false);
   modifyCells = createVoro(firstShape, false);
   println("first shape has "+firstCells.size()+" cells.");
@@ -111,26 +111,25 @@ void makeFirstCells(){
 }
 
 void makeDualCells(){
-  HE_Mesh innerShape = new HE_Mesh();
-  innerShape = dualShape.get();
+  HE_Mesh innerShape = dualShape.get();
   innerShape.scaleSelf(0.75);
   HE_FaceIterator fitr=innerShape.fItr();
   while (fitr.hasNext()) {
     fitr.next().setColor(innerColor);
   }
+  HET_MeshOp.flipFaces(innerShape);
+  
   fitr=dualShape.fItr();
   while (fitr.hasNext()) {
     fitr.next().setColor(outerColor);
   }
   
-  HET_MeshOp.flipFaces(innerShape);
-  
   dualShape.add(innerShape);
+  println(" the dual shape is started. ");
   
   dualCells = createVoro(dualShape, false);
   println("dual has "+dualCells.size()+" cells.");
   bDualCells = true;
-  //nDualCells = dualCells.size()/2;
 } 
 
   
